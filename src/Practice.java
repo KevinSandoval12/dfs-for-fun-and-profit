@@ -19,7 +19,8 @@ public class Practice {
    * @param vertex The starting vertex for the traversal.
    */
   public <T> void printVertexVals(Vertex<T> vertex) {
-    printVertexVals(vertex, new HashSet<>());
+    Set<Vertex<T>> visited = new HashSet<>();
+    printVertexVals(vertex, visited);
   }
 
   private <T> void printVertexVals(Vertex<T> vertex, Set<Vertex<T>> seen){
