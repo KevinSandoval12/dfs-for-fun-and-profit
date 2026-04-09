@@ -1,3 +1,4 @@
+import java.lang.classfile.attribute.StackMapFrameInfo.VerificationTypeInfo;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -109,8 +110,26 @@ public class Practice {
    * @return A set containing all reachable leaf vertices, or an empty set if vertex is null.
    */
   public <T> Set<Vertex<T>> leaves(Vertex<T> vertex) {
-    return null;
+    Set<Vertex<T>> leaveSet = new HashSet<>();
+    return leaves(vertex, new HashSet<>(), leaveSet);
   }
+
+  private <T> Set<Vertex<T>> leaves(Vertex<T> vertex, Set<Vertex<T>> seen, Set<Vertex<T>> leaveSet) {
+    if (vertex == null || seen.contains(vertex)) return new HashSet<>();
+    if (vertex.neighbors.size() == 0) leaveSet.add(vertex);
+
+    seen.add(vertex);
+
+    for (Vertex<T> leave : vertex.neighbors) {
+      if (leave.neighbors.size() == 0) {
+        leaveSet.add(leave);
+      }
+      leaves(leave, seen, leaveSet);
+    }
+
+    return leaveSet;
+  }
+
 
 
   /**
