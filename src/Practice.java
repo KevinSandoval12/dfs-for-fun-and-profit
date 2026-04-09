@@ -20,6 +20,7 @@ public class Practice {
   public <T> void printVertexVals(Vertex<T> vertex) {
   }
 
+
   /**
    * Returns a set of all vertices reachable from the given starting vertex,
    * including the starting vertex itself.
