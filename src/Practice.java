@@ -143,8 +143,30 @@ public class Practice {
    * @return true if all reachable vertices hold odd values, false otherwise
    */
   public boolean allOdd(Vertex<Integer> vertex) {
+    return allOdd(vertex, new HashSet<>());
+  }
+
+  public boolean allOdd(Vertex<Integer> vertex, Set<Vertex<Integer>> seen){
+    if(vertex == null || seen.contains(vertex)){
+      return true;
+    }
+
+    seen.add(vertex);
+
+    if(vertex.data % 2 == 0){
+      return false;
+    }
+
+    for(Vertex<Integer> vert : vertex.neighbors){
+      if(allOdd(vert, seen) == false){
+        return false;
+      }
+    }
+
     return true;
   }
+
+
 
   /**
    * Determines whether there exists a strictly increasing path from the given start vertex
